@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -23,6 +24,7 @@ use Illuminate\Notifications\Notifiable;
  * @property      string|null                              $remember_token
  * @property      \Illuminate\Support\Carbon|null          $created_at
  * @property      \Illuminate\Support\Carbon|null          $updated_at
+ * @property      mixed                                    $role
  * @property-read \Illuminate\Database\Eloquent\Model|null $userable
  */
 class User extends Authenticatable
@@ -48,6 +50,24 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    /**
+     * Interact with the  attribute.
+     *
+     * return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    public function role(): Attribute
+    {
+        $role = match ($this->userable?->getMorphClass()) {
+            Student::class => 'Student',
+            Admin::class => 'Admin',
+            default => null,
+        };
+
+        return Attribute::make(
+            get: fn () => $role,
+        );
+    }
 
     /**
      * Get the attributes that should be cast.

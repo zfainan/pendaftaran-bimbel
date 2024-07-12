@@ -55,15 +55,17 @@
                                     <span class="availability-status online"></span>
                                 </div>
                                 <div class="nav-profile-text">
-                                    <p class="mb-1 text-black">David Greymaax</p>
+                                    <p class="mb-1 text-black">{{ auth()->user()->userable->nama }}</p>
                                 </div>
                             </a>
                             <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="mdi mdi-cached text-success me-2"></i> Activity Log </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">
-                                    <i class="mdi mdi-logout text-primary me-2"></i> Signout </a>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button class="dropdown-item" type="submit">
+                                        <i class="mdi mdi-logout text-primary me-2"></i> Signout
+                                    </button>
+                                </form>
                             </div>
                         </li>
                         <li class="nav-item d-none d-lg-block full-screen-link">
@@ -91,8 +93,9 @@
                                     <!--change to offline or busy as needed-->
                                 </div>
                                 <div class="nav-profile-text d-flex flex-column">
-                                    <span class="font-weight-bold mb-2">David Grey. H</span>
-                                    <span class="text-secondary text-small">Project Manager</span>
+                                    <span
+                                        class="font-weight-bold mb-2">{{ explode(' ', auth()->user()->userable->nama)[0] }}</span>
+                                    <span class="text-secondary text-small">{{ auth()->user()->role }}</span>
                                 </div>
                                 <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
                             </a>
@@ -110,8 +113,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#side-master-data"
-                                aria-expanded="false" aria-controls="side-master-data">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#side-master-data" aria-expanded="false"
+                                aria-controls="side-master-data">
                                 <span class="menu-title">Master Data</span>
                                 <i class="menu-arrow"></i>
                                 <i class="mdi mdi-table-large menu-icon"></i>
