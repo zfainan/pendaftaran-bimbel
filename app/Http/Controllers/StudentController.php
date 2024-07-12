@@ -52,18 +52,7 @@ class StudentController extends Controller
 
         try {
             DB::transaction(function () use ($request) {
-                $student = Student::create([
-                    'nama' => $request->input('nama'),
-                    'tempat_lahir' => $request->input('tempat_lahir'),
-                    'tgl_lahir' => $request->input('tgl_lahir'),
-                    'gender' => $request->input('gender'),
-                    'kelas' => $request->input('kelas'),
-                    'asal_sekolah' => $request->input('asal_sekolah'),
-                    'no_telp' => $request->input('no_telp'),
-                    'nama_ortu' => $request->input('nama_ortu'),
-                    'pekerjaan_ortu' => $request->input('pekerjaan_ortu'),
-                    'no_telp_ortu' => $request->input('no_telp_ortu'),
-                ]);
+                $student = Student::create($request->all());
 
                 $user = new User();
                 $user->fill([
@@ -76,8 +65,7 @@ class StudentController extends Controller
 
             return redirect(route('students.index'))->with('success', 'Tambah data berhasil.');
         } catch (\Throwable $th) {
-
-            return redirect()->back()->with('error', 'Tambah data gagal.' . $th->getMessage())->withInput();
+            return redirect()->back()->with('error', 'Tambah data gagal.'.$th->getMessage())->withInput();
         }
     }
 
@@ -86,7 +74,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        return view('students.show', compact('student'));
     }
 
     /**
@@ -113,24 +101,13 @@ class StudentController extends Controller
             'nama_ortu' => 'required|string|max:255',
             'pekerjaan_ortu' => 'required|string|max:255',
             'no_telp_ortu' => 'required|string|max:20',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $student->user->id,
+            'email' => 'required|string|email|max:255|unique:users,email,'.$student->user->id,
             'password' => 'nullable|string|min:8|confirmed',
         ]);
 
         try {
             DB::transaction(function () use ($request, $student) {
-                $student->update([
-                    'nama' => $request->input('nama', $student->nama),
-                    'tempat_lahir' => $request->input('tempat_lahir', $student->tempat_lahir),
-                    'tgl_lahir' => $request->input('tgl_lahir', $student->tgl_lahir),
-                    'gender' => $request->input('gender', $student->gender),
-                    'kelas' => $request->input('kelas', $student->kelas),
-                    'asal_sekolah' => $request->input('asal_sekolah', $student->asal_sekolah),
-                    'no_telp' => $request->input('no_telp', $student->no_telp),
-                    'nama_ortu' => $request->input('nama_ortu', $student->nama_ortu),
-                    'pekerjaan_ortu' => $request->input('pekerjaan_ortu', $student->pekerjaan_ortu),
-                    'no_telp_ortu' => $request->input('no_telp_ortu', $student->no_telp_ortu),
-                ]);
+                $student->update($request->all());
 
                 $student->user->update([
                     'email' => $request->input('email', $student->user->email),
@@ -143,10 +120,9 @@ class StudentController extends Controller
                 }
             });
 
-            return redirect(route('students.index'))->with('success', 'Tambah data berhasil.');
+            return redirect(route('students.index'))->with('success', 'Ubah data berhasil.');
         } catch (\Throwable $th) {
-
-            return redirect()->back()->with('error', 'Tambah data gagal.' . $th->getMessage())->withInput();
+            return redirect()->back()->with('error', 'Ubah data gagal.'.$th->getMessage())->withInput();
         }
     }
 
@@ -163,8 +139,7 @@ class StudentController extends Controller
 
             return redirect(route('students.index'))->with('success', 'Hapus data berhasil.');
         } catch (\Throwable $th) {
-
-            return redirect()->back()->with('error', 'Hapus data gagal.' . $th->getMessage())->withInput();
+            return redirect()->back()->with('error', 'Hapus data gagal.'.$th->getMessage())->withInput();
         }
     }
 }

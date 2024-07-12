@@ -47,7 +47,7 @@ class Student extends Model
         'no_telp',
         'nama_ortu',
         'pekerjaan_ortu',
-        'no_telp_ortu'
+        'no_telp_ortu',
     ];
 
     public function user(): MorphOne

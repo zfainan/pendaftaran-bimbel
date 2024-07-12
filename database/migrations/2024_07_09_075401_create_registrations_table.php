@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('program_id');
-            $table->timestamp('tanggal');
+            $table->date('tanggal');
             $table->timestamps();
 
             $table->foreign('student_id')
@@ -27,10 +27,6 @@ return new class extends Migration
             $table->foreign('program_id')
                 ->references('id')
                 ->on('programs')
-                ->onDelete('cascade');
-            $table->foreign('period_id')
-                ->references('id')
-                ->on('periods')
                 ->onDelete('cascade');
         });
     }

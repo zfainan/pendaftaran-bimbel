@@ -60,8 +60,7 @@ class AdminController extends Controller
 
             return redirect(route('admins.index'))->with('success', 'Tambah data berhasil.');
         } catch (\Throwable $th) {
-
-            return redirect()->back()->with('error', 'Tambah data gagal.' . $th->getMessage())->withInput();
+            return redirect()->back()->with('error', 'Tambah data gagal.'.$th->getMessage())->withInput();
         }
     }
 
@@ -89,7 +88,7 @@ class AdminController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'no_telp' => 'nullable|string|max:20',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $admin->user->id,
+            'email' => 'required|string|email|max:255|unique:users,email,'.$admin->user->id,
             'password' => 'nullable|string|min:8|confirmed',
         ]);
 
@@ -113,8 +112,7 @@ class AdminController extends Controller
 
             return redirect(route('admins.index'))->with('success', 'Ubah data berhasil.');
         } catch (\Throwable $th) {
-
-            return redirect()->back()->with('error', 'Ubah data gagal.' . $th->getMessage())->withInput();
+            return redirect()->back()->with('error', 'Ubah data gagal.'.$th->getMessage())->withInput();
         }
     }
 
@@ -131,8 +129,7 @@ class AdminController extends Controller
 
             return redirect(route('admins.index'))->with('success', 'Hapus data berhasil.');
         } catch (\Throwable $th) {
-
-            return redirect()->back()->with('error', 'Hapus data gagal.' . $th->getMessage())->withInput();
+            return redirect()->back()->with('error', 'Hapus data gagal.'.$th->getMessage())->withInput();
         }
     }
 }

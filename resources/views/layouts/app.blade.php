@@ -26,6 +26,8 @@
         <link rel="shortcut icon" href="/assets/images/favicon.png" />
 
         @vite(['resources/js/app.js'])
+
+        @yield('head')
     </head>
 
     <body>
@@ -96,14 +98,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('home') }}">
                                 <span class="menu-title">Dashboard</span>
                                 <i class="mdi mdi-home menu-icon"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#side-registration"
-                                aria-expanded="false" aria-controls="side-registration">
+                            <a class="nav-link" href="{{ route('registrations.index') }}">
                                 <span class="menu-title">Registrasi</span>
                                 <i class="mdi mdi-contacts menu-icon"></i>
                             </a>
@@ -177,6 +178,8 @@
         <!-- Custom js for this page -->
         <script src="/assets/js/dashboard.js"></script>
         <!-- End custom js for this page -->
+
+        @yield('script')
     </body>
 
 </html>

@@ -16,17 +16,22 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property      int                             $id
  * @property      int                             $student_id
  * @property      int                             $program_id
- * @property      int                             $period_id
  * @property      string                          $tanggal
  * @property      \Illuminate\Support\Carbon|null $created_at
  * @property      \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Student|null        $student
  * @property-read \App\Models\Program|null        $program
- * @property-read \App\Models\Period|null         $period
  */
 class Registration extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['student_id', 'program_id', 'tanggal'];
 
     public function student(): BelongsTo
     {
@@ -36,10 +41,5 @@ class Registration extends Model
     public function program(): BelongsTo
     {
         return $this->belongsTo(Program::class);
-    }
-
-    public function period(): BelongsTo
-    {
-        return $this->belongsTo(Period::class);
     }
 }

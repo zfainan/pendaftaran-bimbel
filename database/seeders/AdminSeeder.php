@@ -17,7 +17,7 @@ class AdminSeeder extends Seeder
     {
         $admins = Admin::factory()->count(3)->create();
 
-        $admins->each(function(Admin $admin) {
+        $admins->each(function (Admin $admin) {
             $user = User::factory()->make();
 
             $user->userable()->associate($admin);
@@ -25,7 +25,7 @@ class AdminSeeder extends Seeder
         });
 
         $admins->first()->user->update([
-            'email' => 'admin@example.com'
+            'email' => 'admin@example.com',
         ]);
     }
 }
