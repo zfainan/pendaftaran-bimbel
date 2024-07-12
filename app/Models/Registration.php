@@ -7,6 +7,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @method static \Database\Factories\RegistrationFactory<self> factory($count = null, $state = [])
@@ -21,6 +22,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property      \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Student|null        $student
  * @property-read \App\Models\Program|null        $program
+ * @property-read \App\Models\Payment|null        $payment
  */
 class Registration extends Model
 {
@@ -41,5 +43,10 @@ class Registration extends Model
     public function program(): BelongsTo
     {
         return $this->belongsTo(Program::class);
+    }
+
+    public function payment(): HasOne
+    {
+        return $this->hasOne(Payment::class);
     }
 }

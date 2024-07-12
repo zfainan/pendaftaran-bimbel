@@ -40,6 +40,7 @@
                             <th>Nama</th>
                             <th>Program</th>
                             <th>Tanggal</th>
+                            <th>Status Pembayaran</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -50,6 +51,7 @@
                                 <td>{{ $item->student->nama }}</td>
                                 <td>{{ $item->program->nama }}</td>
                                 <td>{{ $item->tanggal }}</td>
+                                <td>{{ $item->payment?->status ?? 'Belum Bayar' }}</td>
                                 <td>
                                     <div class="d-flex">
                                         <a href="{{ route('registrations.show', $item) }}"

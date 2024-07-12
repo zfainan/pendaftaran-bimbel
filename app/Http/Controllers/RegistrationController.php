@@ -17,7 +17,7 @@ class RegistrationController extends Controller
      */
     public function index()
     {
-        $data = Registration::with(['student', 'program'])->latest()->paginate();
+        $data = Registration::with(['student', 'program', 'payment'])->latest()->paginate();
 
         return view('registrations.index', compact('data'));
     }

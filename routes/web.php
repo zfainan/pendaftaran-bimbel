@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\StudentController;
@@ -23,6 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('students', StudentController::class);
 
     Route::resource('registrations', RegistrationController::class);
+
+    Route::resource('payments', PaymentController::class)->except(['index', 'create', 'edit']);
 });
 
 Auth::routes();
