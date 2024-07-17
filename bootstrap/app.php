@@ -13,7 +13,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+            'admin-only' => \App\Http\Middleware\EnsureAuthUserIsAdmin::class,
+            'student-only' => \App\Http\Middleware\EnsureAuthUserIsStudent::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

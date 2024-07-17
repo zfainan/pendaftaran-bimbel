@@ -35,7 +35,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/student/home';
 
     /**
      * Create a new controller instance.
@@ -75,7 +75,7 @@ class RegisterController extends Controller
             DB::beginTransaction();
 
             $student = Student::create([
-                'nama' => $data['name']
+                'nama' => $data['name'],
             ]);
 
             /** @var User $user */

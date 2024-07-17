@@ -15,17 +15,18 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  *
  * @property      int                             $id
  * @property      string                          $nama
- * @property      string                          $tempat_lahir
- * @property      string                          $tgl_lahir
- * @property      string                          $gender
- * @property      int                             $kelas
- * @property      string                          $asal_sekolah
- * @property      string                          $no_telp
- * @property      string                          $nama_ortu
- * @property      string                          $pekerjaan_ortu
- * @property      string                          $no_telp_ortu
+ * @property      string|null                     $tempat_lahir
+ * @property      string|null                     $tgl_lahir
+ * @property      string|null                     $gender
+ * @property      int|null                        $kelas
+ * @property      string|null                     $asal_sekolah
+ * @property      string|null                     $no_telp
+ * @property      string|null                     $nama_ortu
+ * @property      string|null                     $pekerjaan_ortu
+ * @property      string|null                     $no_telp_ortu
  * @property      \Illuminate\Support\Carbon|null $created_at
  * @property      \Illuminate\Support\Carbon|null $updated_at
+ * @property      bool                            $is_active
  * @property-read \App\Models\User|null           $user
  */
 class Student extends Model
