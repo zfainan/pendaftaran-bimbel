@@ -10,12 +10,14 @@
                     </div>
                     <h4>New here?</h4>
                     <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
-                    <form class="pt-3" action="{{ route('register') }}">
+                    <form class="pt-3" action="{{ route('register') }}" method="POST">
                         @csrf
+
+                        <input type="hidden" name="program_id" value="{{ request()->input('program_id') }}">
 
                         <div class="form-group">
                             <input type="text" name="name"
-                                class="form-control form-control-lg @error('name') is-invalid @enderror"
+                                class="form-control form-control-lg @error('name') is-invalid @enderror" value="{{ old('name') }}"
                                 id="exampleInputName1" placeholder="Fullname">
 
                             @error('name')
@@ -27,7 +29,7 @@
 
                         <div class="form-group">
                             <input type="email" name="email"
-                                class="form-control form-control-lg @error('email') is-invalid @enderror"
+                                class="form-control form-control-lg @error('email') is-invalid @enderror" value="{{ old('email') }}"
                                 id="exampleInputEmail1" placeholder="Email">
 
                             @error('email')
