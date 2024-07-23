@@ -38,6 +38,7 @@
                         <tr>
                             <th class="text-center">#</th>
                             <th>Nama</th>
+                            <th>Harga</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -46,6 +47,7 @@
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama }}</td>
+                                <td>Rp {{ $item->harga ?? '-' }}</td>
                                 <td>
                                     <div class="d-flex">
                                         <a href="{{ route('programs.edit', $item) }}"

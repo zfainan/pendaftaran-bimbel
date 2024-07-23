@@ -32,13 +32,12 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'nama' => 'required|string|max:255',
+            'harga' => 'required|integer|min:0',
         ]);
 
-        Program::create([
-            'nama' => $request->input('nama'),
-        ]);
+        Program::create($validated);
 
         return redirect(route('programs.index'))->with('success', 'Tambah data berhasil.');
     }
@@ -64,13 +63,12 @@ class ProgramController extends Controller
      */
     public function update(Request $request, Program $program)
     {
-        $request->validate([
+        $validated = $request->validate([
             'nama' => 'required|string|max:255',
+            'harga' => 'required|integer|min:0',
         ]);
 
-        $program->update([
-            'nama' => $request->input('nama'),
-        ]);
+        $program->update($validated);
 
         return redirect(route('programs.index'))->with('success', 'Ubah data berhasil.');
     }

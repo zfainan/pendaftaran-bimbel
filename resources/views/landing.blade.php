@@ -37,7 +37,7 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
-        @vite([])
+        @vite(['resources/app.js'])
     </head>
 
     <body class="index-page">
@@ -48,36 +48,14 @@
                 <a href="/" class="logo d-flex align-items-center me-auto">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
                     <!-- <img src="/arsha/assets/img/logo.png" alt=""> -->
-                    <h1 class="sitename">Arsha</h1>
+                    <h1 class="sitename">Smartgama</h1>
                 </a>
 
                 <nav id="navmenu" class="navmenu">
                     <ul>
                         <li><a href="#hero" class="active">Home</a></li>
                         <li><a href="#about">About</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#portfolio">Portfolio</a></li>
-                        <li><a href="#team">Team</a></li>
                         <li><a href="#pricing">Pricing</a></li>
-                        <li class="dropdown"><a href="#"><span>Dropdown</span> <i
-                                    class="bi bi-chevron-down toggle-dropdown"></i></a>
-                            <ul>
-                                <li><a href="#">Dropdown 1</a></li>
-                                <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i
-                                            class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                    <ul>
-                                        <li><a href="#">Deep Dropdown 1</a></li>
-                                        <li><a href="#">Deep Dropdown 2</a></li>
-                                        <li><a href="#">Deep Dropdown 3</a></li>
-                                        <li><a href="#">Deep Dropdown 4</a></li>
-                                        <li><a href="#">Deep Dropdown 5</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Dropdown 2</a></li>
-                                <li><a href="#">Dropdown 3</a></li>
-                                <li><a href="#">Dropdown 4</a></li>
-                            </ul>
-                        </li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -85,7 +63,7 @@
 
                 <a class="btn-getstarted" href="#pricing">Daftar Sekarang</a>
                 <a href="{{ route('login') }}"
-                    class="glightbox btn-watch-video d-flex align-items-center ps-3">Login</a>
+                    class="btn-watch-video d-flex align-items-center ps-3">Login</a>
 
             </div>
         </header>
@@ -127,7 +105,7 @@
 
                         <div class="col-12 text-center" data-aos="fade-up" data-aos-delay="100">
                             <p>
-                                Kami adalah bimbingan belajar tatap muka berbasis teknologi online yang
+                                Smartgama adalah bimbingan belajar tatap muka berbasis teknologi online yang
                                 telah berhasil mengantarkan 47.000 lebih kelulusan siswa ke PTN dan PT Kedinasan pada
                                 tahun 2023 dan angka tersebut terus meningkat setiap tahunnya. Kami telah meraih 2
                                 penghargaan MURI yaitu sebagai Bimbel Terbaik dengan Kelulusan Siswa Terbanyak ke PTN

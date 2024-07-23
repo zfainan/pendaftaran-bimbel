@@ -50,6 +50,23 @@
                 </div>
 
                 <div class="form-group row">
+                    <label for="harga" class="col-sm-3 col-form-label">Harga Program</label>
+                    <div class="col-sm-9">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                            <input type="number" name="harga" value="{{ old('harga') ?? $program->harga }}" class="form-control @error('harga') is-invalid @enderror" placeholder="Harga"
+                                aria-describedby="basic-addon1" required>
+
+                            @error('harga')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <div class="col-sm-9 ms-auto">
                         <button type="submit" class="btn btn-gradient-primary mr-2">Simpan</button>
                         <a href="{{ route('programs.index') }}" class="btn btn-light">Kembali</a>

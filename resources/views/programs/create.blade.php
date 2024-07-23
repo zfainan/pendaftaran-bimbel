@@ -33,17 +33,34 @@
                 @csrf
 
                 <div class="form-group row">
-                    <label for="inputName" class="col-sm-3 col-form-label">Nama Program</label>
+                    <label for="Nama" class="col-sm-3 col-form-label">Nama Program</label>
                     <div class="col-sm-9">
                         <input type="text" name="nama" value="{{ old('nama') }}"
-                            class="form-control @error('nama') is-invalid @enderror" id="inputName"
-                            placeholder="Nama" required>
+                            class="form-control @error('nama') is-invalid @enderror" id="Nama" placeholder="Nama"
+                            required>
 
                         @error('nama')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="harga" class="col-sm-3 col-form-label">Harga Program</label>
+                    <div class="col-sm-9">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                            <input type="number" name="harga" value="{{ old('harga') }}" class="form-control @error('harga') is-invalid @enderror" placeholder="Harga"
+                                aria-describedby="basic-addon1" required>
+
+                            @error('harga')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
                 </div>
 
