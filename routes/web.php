@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController as AdminHomeController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\Student\HomeController;
 use App\Http\Controllers\StudentController;
-use App\Models\Program;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'landing', [
-    'programs' => Program::all(),
-]);
+Route::get('/', LandingPageController::class);
 
 Route::middleware('auth')->group(function () {
     Route::middleware('admin-only')->group(function () {

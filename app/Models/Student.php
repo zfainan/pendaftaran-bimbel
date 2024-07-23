@@ -57,7 +57,7 @@ class Student extends Model
         return $this->morphOne(User::class, 'userable');
     }
 
-    public function registration(): HasMany
+    public function registrations(): HasMany
     {
         return $this->hasMany(Registration::class);
     }

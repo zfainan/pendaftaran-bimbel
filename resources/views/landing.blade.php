@@ -37,7 +37,7 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
-        @vite(['resources/app.js'])
+        @vite([])
     </head>
 
     <body class="index-page">

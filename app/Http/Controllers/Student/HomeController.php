@@ -5,17 +5,22 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $program = auth()->user()->userable?->registration->sortByDesc('tanggal')->first()?->program;
+        /** @var Student $user */
+        // $user = auth()->user()->userable;
 
-        $payment = auth()->user()->userable?->registration->sortByDesc('tanggal')->first()?->payment;
+        // $user->load('registrations');
 
-        return view('home', compact('program', 'payment'));
+        // $program = $user?->registrations->sortByDesc('tanggal')->first()?->program;
+        // $payment = $user?->registrations->sortByDesc('tanggal')->first()?->payment;
+
+        // return view('home', compact('program', 'payment'));
     }
 
     public function completeRegistration(Request $request)
