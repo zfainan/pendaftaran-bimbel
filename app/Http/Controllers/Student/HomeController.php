@@ -13,14 +13,14 @@ class HomeController extends Controller
     public function index()
     {
         /** @var Student $user */
-        // $user = auth()->user()->userable;
+        $user = auth()->user()->userable;
 
-        // $user->load('registrations');
+        $user->load('registrations');
 
-        // $program = $user?->registrations->sortByDesc('tanggal')->first()?->program;
-        // $payment = $user?->registrations->sortByDesc('tanggal')->first()?->payment;
+        $program = $user?->registrations->sortByDesc('tanggal')->first()?->program;
+        $payment = $user?->registrations->sortByDesc('tanggal')->first()?->payment;
 
-        // return view('home', compact('program', 'payment'));
+        return view('student.home', compact('program', 'payment'));
     }
 
     public function completeRegistration(Request $request)
