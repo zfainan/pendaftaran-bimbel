@@ -11,7 +11,11 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('home');
+        $program = auth()->user()->userable?->registration->sortByDesc('tanggal')->first()?->program;
+
+        $payment = auth()->user()->userable?->registration->sortByDesc('tanggal')->first()?->payment;
+
+        return view('home', compact('program', 'payment'));
     }
 
     public function completeRegistration(Request $request)
