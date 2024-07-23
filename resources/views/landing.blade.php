@@ -62,8 +62,7 @@
                 </nav>
 
                 <a class="btn-getstarted" href="#pricing">Daftar Sekarang</a>
-                <a href="{{ route('login') }}"
-                    class="btn-watch-video d-flex align-items-center ps-3">Login</a>
+                <a href="{{ route('login') }}" class="btn-watch-video d-flex align-items-center ps-3">Login</a>
 
             </div>
         </header>
@@ -150,14 +149,12 @@
                             <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
                                 <div class="pricing-item featured">
                                     <h3>{{ $program->nama }}</h3>
-                                    <h4><sup>$</sup>29<span> / month</span></h4>
+                                    <h4><sup>Rp</sup>{{ $program->harga }}<span> / Semester</span></h4>
                                     <ul>
-                                        <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
-                                        <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
-                                        <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
-                                        <li><i class="bi bi-check"></i> <span>Pharetra massa massa ultricies</span>
-                                        </li>
-                                        <li><i class="bi bi-check"></i> <span>Massa ultricies mi quis hendrerit</span>
+                                        <li><i class="bi bi-check"></i> <span>Pengajar Ahli</span></li>
+                                        <li><i class="bi bi-check"></i> <span>Pendampingan</span></li>
+                                        <li><i class="bi bi-check"></i> <span>Materi Terlengkap</span></li>
+                                        <li><i class="bi bi-check"></i> <span>Tes Progresif Berkala</span>
                                         </li>
                                     </ul>
                                     <a href="{{ route('register', [

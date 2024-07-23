@@ -24,8 +24,17 @@ class EnsureAuthUserIsStudent
             abort(403);
         }
 
-        if (! $user->userable->tgl_lahir && 'student.complete-registration' != $request->route()->getName()) {
+        if (
+            (! $user->userable->tgl_lahir) &&
+            'student.complete-registration' != $request->route()->getName() &&
+            'student.store-registration' != $request->route()->getName()
+        ) {
             return redirect()->route('student.complete-registration');
+        } elseif (
+            'student.complete-registration' == $request->route()->getName() ||
+            'student.store-registration' == $request->route()->getName()
+        ) {
+            return redirect()->route('student.home');
         }
 
         return $next($request);

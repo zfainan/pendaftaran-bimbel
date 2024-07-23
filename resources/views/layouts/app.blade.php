@@ -100,39 +100,50 @@
                                 <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">
-                                <span class="menu-title">Dashboard</span>
-                                <i class="mdi mdi-home menu-icon"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('registrations.index') }}">
-                                <span class="menu-title">Registrasi</span>
-                                <i class="mdi mdi-contacts menu-icon"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#side-master-data" aria-expanded="false"
-                                aria-controls="side-master-data">
-                                <span class="menu-title">Master Data</span>
-                                <i class="menu-arrow"></i>
-                                <i class="mdi mdi-table-large menu-icon"></i>
-                            </a>
-                            <div class="collapse" id="side-master-data">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('programs.index') }}">Program</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('students.index') }}">Siswa</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('admins.index') }}">Admin</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+
+                        @if (auth()->user()->userable instanceof App\Models\Admin)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('home') }}">
+                                    <span class="menu-title">Dashboard</span>
+                                    <i class="mdi mdi-home menu-icon"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('registrations.index') }}">
+                                    <span class="menu-title">Registrasi</span>
+                                    <i class="mdi mdi-contacts menu-icon"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="collapse" href="#side-master-data"
+                                    aria-expanded="false" aria-controls="side-master-data">
+                                    <span class="menu-title">Master Data</span>
+                                    <i class="menu-arrow"></i>
+                                    <i class="mdi mdi-table-large menu-icon"></i>
+                                </a>
+                                <div class="collapse" id="side-master-data">
+                                    <ul class="nav flex-column sub-menu">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('programs.index') }}">Program</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('students.index') }}">Siswa</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('admins.index') }}">Admin</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('student.home') }}">
+                                    <span class="menu-title">Home</span>
+                                    <i class="mdi mdi-home menu-icon"></i>
+                                </a>
+                            </li>
+                        @endif
+
                     </ul>
                 </nav>
                 <!-- partial -->

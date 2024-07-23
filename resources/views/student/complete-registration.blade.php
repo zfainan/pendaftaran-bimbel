@@ -1,17 +1,5 @@
 @extends('layouts.guest')
 
-@section('page-header')
-    <div class="page-header">
-        <h3 class="page-title"> Tambah Data Siswa </h3>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('students.index') }}">Data Siswa</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Tambah Data Siswa</li>
-            </ol>
-        </nav>
-    </div>
-@endsection
-
 @section('content')
 
     <div class="content-wrapper d-flex align-items-center auth">
@@ -21,8 +9,8 @@
                     <div class="brand-logo">
                         <img src="/assets/images/logo.svg" alt="">
                     </div>
-                    <h4>Selesaikan Pendaftaran</h4>
-                    <h6 class="font-weight-light">Fill the form to continue.</h6>
+                    <h4>Selamat datang, {{ auth()->user()->userable->nama }}</h4>
+                    <h6 class="font-weight-light">Selesaikan Pendaftaran</h6>
 
                     @session('success')
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -38,7 +26,18 @@
                         </div>
                     @endsession
 
-                    <form class="pt-3" action="{{ route('login') }}" method="POST">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <strong>Ada beberapa kesalahan validasi:</strong>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form class="pt-3" action="{{ route('student.store-registration') }}" method="POST">
                         @csrf
 
                         <div class="form-group row">
@@ -77,16 +76,16 @@
                                 <div class="form-group">
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input name="gender" type="radio" class="form-check-input"
-                                                name="optionsRadios" id="optionsRadios1" value="L"
-                                                @checked(old('gender') == 'L') required> Laki-laki
+                                            <input name="gender" type="radio" class="form-check-input" name="gender"
+                                                id="optionsRadios1" value="L" @checked(old('gender') == 'L') required>
+                                            Laki-laki
                                             <i class="input-helper"></i></label>
                                     </div>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input name="gender" type="radio" class="form-check-input"
-                                                name="optionsRadios" id="optionsRadios2" value="P"
-                                                @checked(old('gender') == 'P') required> Perempuan
+                                            <input name="gender" type="radio" class="form-check-input" name="gender"
+                                                id="optionsRadios2" value="P" @checked(old('gender') == 'P') required>
+                                            Perempuan
                                             <i class="input-helper"></i></label>
                                     </div>
                                 </div>
@@ -189,8 +188,9 @@
                             </div>
                         </div>
 
-                        <div class="mt-3 d-flex">
-                            <button class="ms-auto mb-auto btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn"
+                        <div class="d-flex mt-3">
+                            <button
+                                class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn mb-auto ms-auto"
                                 type="submit">Lanjut</button>
                         </div>
                     </form>
