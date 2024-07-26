@@ -21,7 +21,7 @@ class EnsureAuthUserIsAdmin
         $user = auth()->user();
 
         if (! ($user->userable instanceof Admin)) {
-            abort(403);
+            return redirect()->route('student.home');
         }
 
         return $next($request);

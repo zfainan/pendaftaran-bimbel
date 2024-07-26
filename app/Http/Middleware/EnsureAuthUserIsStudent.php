@@ -21,7 +21,7 @@ class EnsureAuthUserIsStudent
         $user = auth()->user();
 
         if (!($user->userable instanceof Student)) {
-            abort(403);
+            return redirect()->route('home');
         }
 
         if (
