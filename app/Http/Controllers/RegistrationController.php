@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\Branch;
 use App\Models\Program;
 use App\Models\Registration;
 use App\Models\Student;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use LogicException;
 
@@ -15,9 +17,25 @@ class RegistrationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Registration::with(['student', 'program', 'payment'])->latest()->paginate();
+        $query = Registration::with(['student', 'program', 'payment', 'branch']);
+
+        if ($request->filled('branch_id')) {
+            $query->where('branch_id', $request->get('branch_id'));
+        }
+
+        if ($request->filled('program_id')) {
+            $query->where('program_id', $request->get('program_id'));
+        }
+
+        if ($request->filled('q')) {
+            $query->whereHas('student', function ($query) use ($request) {
+                $query->where('nama', 'like', '%'.$request->q.'%');
+            });
+        }
+
+        $data = $query->latest()->paginate();
 
         return view('registrations.index', compact('data'));
     }
@@ -29,11 +47,12 @@ class RegistrationController extends Controller
     {
         $students = Student::all();
         $programs = Program::all();
+        $branches = Branch::all();
 
         $selectedStudent = $request->filled('student_id') ? Student::find($request->input('student_id')) : null;
         $selectedProgram = $request->filled('program_id') ? Program::find($request->input('program_id')) : null;
 
-        return view('registrations.create', compact('students', 'programs', 'selectedStudent', 'selectedProgram'));
+        return view('registrations.create', compact('students', 'programs', 'branches', 'selectedStudent', 'selectedProgram'));
     }
 
     /**
@@ -44,6 +63,7 @@ class RegistrationController extends Controller
         $validated = $request->validate([
             'student_id' => 'required|exists:students,id',
             'program_id' => 'required|exists:programs,id',
+            'branch_id' => 'required|exists:branches,id',
             'tanggal' => 'required|date',
         ]);
 
@@ -78,10 +98,11 @@ class RegistrationController extends Controller
     {
         $students = Student::all();
         $programs = Program::all();
+        $branches = Branch::all();
 
         $selectedProgram = $request->filled('program_id') ? Program::find($request->input('program_id')) : $registration->program;
 
-        return view('registrations.edit', compact('registration', 'students', 'programs', 'selectedProgram'));
+        return view('registrations.edit', compact('registration', 'students', 'programs', 'branches', 'selectedProgram'));
     }
 
     /**
@@ -92,6 +113,7 @@ class RegistrationController extends Controller
         $validated = $request->validate([
             'student_id' => 'required|exists:students,id',
             'program_id' => 'required|exists:programs,id',
+            'branch_id' => 'required|exists:branches,id',
             'tanggal' => 'required|date',
         ]);
 
@@ -115,6 +137,51 @@ class RegistrationController extends Controller
             return redirect(route('registrations.index'))->with('success', 'Hapus data berhasil.');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Hapus data gagal.'.$th->getMessage())->withInput();
+        }
+    }
+
+    public function createReport()
+    {
+        $programs = Program::all();
+        $branches = Branch::all();
+
+        return view('registrations.create-report', compact('programs', 'branches'));
+    }
+
+    public function generateReport(Request $request)
+    {
+        $query = Registration::with(['student', 'program', 'payment', 'branch']);
+        $branch = null;
+        $program = null;
+
+        if ($request->filled('branch_id')) {
+            $query->where('branch_id', $request->get('branch_id'));
+            $branch = Branch::find($request->get('branch_id'));
+        }
+
+        if ($request->filled('program_id')) {
+            $query->where('program_id', $request->get('program_id'));
+            $program = Program::find($request->get('program_id'));
+        }
+
+        if ($request->filled('since')) {
+            $query->where('created_at', '>=', $request->get('since'));
+        }
+
+        if ($request->filled('until')) {
+            $query->where('created_at', '<=', $request->get('until'));
+        }
+
+        $data = $query->latest()->get();
+
+        try {
+            $pdf = Pdf::loadView('registrations.report', compact('data', 'branch', 'program', 'request'));
+
+            return $pdf->download(
+                sprintf('registration_%s.pdf', now()->format('Y-m-d'))
+            );
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Generate data gagal.'.$th->getMessage())->withInput();
         }
     }
 }

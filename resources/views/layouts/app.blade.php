@@ -36,9 +36,9 @@
             <nav aria-label="main_nav"
                 class="navbar default-layout-navbar col-lg-12 col-12 fixed-top d-flex flex-row p-0">
                 <div class="navbar-brand-wrapper d-flex align-items-center justify-content-start text-center">
-                    <a class="navbar-brand brand-logo" href="index.html"><img src="/assets/images/logo.svg"
+                    <a class="navbar-brand brand-logo" href="/"><img src="/assets/images/logo.svg"
                             alt="logo" /></a>
-                    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/assets/images/logo-mini.svg"
+                    <a class="navbar-brand brand-logo-mini" href="/"><img src="/assets/images/logo-mini.svg"
                             alt="logo" /></a>
                 </div>
                 <div class="navbar-menu-wrapper d-flex align-items-stretch">
@@ -131,6 +131,9 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ route('admins.index') }}">Admin</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('branches.index') }}">Cabang</a>
                                         </li>
                                     </ul>
                                 </div>

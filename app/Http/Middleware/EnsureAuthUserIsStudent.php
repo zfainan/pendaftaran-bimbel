@@ -20,12 +20,12 @@ class EnsureAuthUserIsStudent
     {
         $user = auth()->user();
 
-        if (!($user->userable instanceof Student)) {
+        if (! ($user->userable instanceof Student)) {
             return redirect()->route('home');
         }
 
         if (
-            (!$user->userable->tgl_lahir) &&
+            (! $user->userable->tgl_lahir) &&
             'student.complete-registration' != $request->route()->getName() &&
             'student.store-registration' != $request->route()->getName()
         ) {

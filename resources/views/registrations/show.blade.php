@@ -37,7 +37,9 @@
                 <div class="d-flex my-3">
                     <h4 class="mb-3">Detail Pendaftaran</h4>
 
-                    <a href="{{ route('registrations.edit', $registration) }}" type="button" class="btn btn-outline-info mb-auto ms-auto">Edit Data Pembayaran</a>
+                    <a href="{{ route('registrations.edit', $registration) }}" type="button"
+                        class="btn btn-outline-info mb-auto ms-auto"><i class="mdi mdi-pen me-2"></i> Edit Data
+                        Pendaftaran</a>
                 </div>
 
                 <div class="card mb-4 border">
@@ -60,6 +62,14 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label">Cabang</label>
+                            <div class="col-sm-9">
+                                <input type="text" value="{{ $registration->branch?->nama ?? '-' }}" class="form-control"
+                                    readonly disabled>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label">Tanggal</label>
                             <div class="col-sm-9">
                                 <input type="date" value="{{ $registration->tanggal }}" class="form-control" readonly
@@ -74,7 +84,7 @@
 
                     @if (!$registration->payment)
                         <button type="button" class="btn btn-primary mb-auto ms-auto" data-bs-toggle="modal"
-                            data-bs-target="#paymentModal">Tambah Data Pembayaran</button>
+                            data-bs-target="#paymentModal"><i class="mdi mdi-plus me-2"></i> Tambah Data Pembayaran</button>
                     @else
                         <form action="{{ route('payments.destroy', $registration->payment) }}" method="POST"
                             class="mb-auto ms-auto" onsubmit="return confirm('Are you sure you want to delete payment?');">
@@ -101,8 +111,8 @@
                             <div class="form-group row">
                                 <label for="" class="col-sm-3 col-form-label">Jumlah</label>
                                 <div class="col-sm-9">
-                                    <input type="text" value="Rp {{ $registration->payment?->jumlah }}" class="form-control"
-                                        readonly disabled>
+                                    <input type="text" value="Rp {{ $registration->payment?->jumlah }}"
+                                        class="form-control" readonly disabled>
                                 </div>
                             </div>
 
@@ -119,7 +129,7 @@
                     </div>
                 </div>
 
-                <a href="{{ route('registrations.index') }}" class="btn btn-light">Kembali</a>
+                <a href="{{ route('registrations.index') }}" class="btn btn-light"><i class="mdi mdi-arrow-left me-2"></i> Kembali</a>
             </div>
         </div>
     </div>

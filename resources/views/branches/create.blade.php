@@ -2,11 +2,11 @@
 
 @section('page-header')
     <div class="page-header">
-        <h3 class="page-title"> Tambah Data Program </h3>
+        <h3 class="page-title"> Tambah Data Cabang </h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('admins.index') }}">Data Program</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Tambah Data Program</li>
+                <li class="breadcrumb-item"><a href="{{ route('admins.index') }}">Data Cabang</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tambah Data Cabang</li>
             </ol>
         </nav>
     </div>
@@ -29,11 +29,11 @@
 
     <div class="card">
         <div class="card-body">
-            <form class="forms-sample" data-bitwarden-watching="1" method="POST" action="{{ route('programs.store') }}">
+            <form class="forms-sample" data-bitwarden-watching="1" method="POST" action="{{ route('branches.store') }}">
                 @csrf
 
                 <div class="form-group row">
-                    <label for="Nama" class="col-sm-3 col-form-label">Nama Program</label>
+                    <label for="Nama" class="col-sm-3 col-form-label">Nama Cabang</label>
                     <div class="col-sm-9">
                         <input type="text" name="nama" value="{{ old('nama') }}"
                             class="form-control @error('nama') is-invalid @enderror" id="Nama" placeholder="Nama"
@@ -48,14 +48,14 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="harga" class="col-sm-3 col-form-label">Harga Program</label>
+                    <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                     <div class="col-sm-9">
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">Rp</span>
-                            <input type="number" name="harga" value="{{ old('harga') }}" class="form-control @error('harga') is-invalid @enderror" placeholder="Harga"
-                                aria-describedby="basic-addon1" required>
+                            <input type="text" name="alamat" value="{{ old('alamat') }}"
+                                class="form-control @error('alamat') is-invalid @enderror" id="Nama" placeholder="Alamat"
+                                required>
 
-                            @error('harga')
+                            @error('alamat')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -67,7 +67,7 @@
                 <div class="form-group row">
                     <div class="col-sm-9 ms-auto">
                         <button type="submit" class="btn btn-gradient-primary mr-2">Simpan</button>
-                        <a href="{{ route('programs.index') }}" class="btn btn-light">Kembali</a>
+                        <a href="{{ route('branches.index') }}" class="btn btn-light">Kembali</a>
                     </div>
                 </div>
             </form>

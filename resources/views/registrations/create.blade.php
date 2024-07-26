@@ -46,8 +46,8 @@
 
                                 <input type="text"
                                     value="{{ $selectedStudent ? $selectedStudent?->nama . ' - ' . $selectedStudent?->asal_sekolah . ' - Kelas ' . $selectedStudent?->kelas : null }}"
-                                    class="form-control @error('student_id') is-invalid @enderror" id="inputStudent" readonly
-                                    required>
+                                    class="form-control @error('student_id') is-invalid @enderror" id="inputStudent"
+                                    readonly required>
 
                                 @error('student_id')
                                     <span class="invalid-feedback" role="alert">
@@ -70,8 +70,8 @@
                                 <input type="hidden" name="program_id" value="{{ $selectedProgram?->id }}">
 
                                 <input type="text" value="{{ $selectedProgram?->nama }}"
-                                    class="form-control @error('program_id') is-invalid @enderror" id="inputProgram" readonly
-                                    required>
+                                    class="form-control @error('program_id') is-invalid @enderror" id="inputProgram"
+                                    readonly required>
 
                                 @error('program_id')
                                     <span class="invalid-feedback" role="alert">
@@ -83,6 +83,26 @@
                             <button type="button" class="btn btn-primary text-nowrap mb-auto" data-bs-toggle="modal"
                                 data-bs-target="#programsModal">Pilih Program</button>
                         </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputBranch" class="col-sm-3 col-form-label">Cabang</label>
+                    <div class="col-sm-9">
+                        <select name="branch_id" id="inputBranch"
+                            class="form-select @error('branch_id') is-invalid @enderror">
+                            <option value disabled selected>Pilih cabang</option>
+                            @foreach ($branches as $item)
+                                <option @selected(old('branch_id') == $item->id) value="{{ $item->id }}">{{ $item->nama }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        @error('branch_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
 

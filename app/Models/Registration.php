@@ -20,9 +20,11 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property      string                          $tanggal
  * @property      \Illuminate\Support\Carbon|null $created_at
  * @property      \Illuminate\Support\Carbon|null $updated_at
+ * @property      int|null                        $branch_id
  * @property-read \App\Models\Student|null        $student
  * @property-read \App\Models\Program|null        $program
  * @property-read \App\Models\Payment|null        $payment
+ * @property-read \App\Models\Branch|null         $branch
  */
 class Registration extends Model
 {
@@ -33,7 +35,7 @@ class Registration extends Model
      *
      * @var array
      */
-    protected $fillable = ['student_id', 'program_id', 'tanggal'];
+    protected $fillable = ['student_id', 'program_id', 'tanggal', 'branch_id'];
 
     public function student(): BelongsTo
     {
@@ -48,5 +50,10 @@ class Registration extends Model
     public function payment(): HasOne
     {
         return $this->hasOne(Payment::class);
+    }
+
+    public function branch(): BelongsTo
+    {
+        return $this->belongsTo(Branch::class);
     }
 }

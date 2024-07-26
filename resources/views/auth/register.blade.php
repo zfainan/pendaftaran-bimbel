@@ -6,7 +6,7 @@
             <div class="col-lg-4 mx-auto">
                 <div class="auth-form-light p-5 text-left">
                     <div class="brand-logo">
-                        <img src="/assets/images/logo.svg" alt="">
+                        <span class="fs-3 fw-bold text-primary">Smartgama</span>
                     </div>
                     <h4>New here?</h4>
                     <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>

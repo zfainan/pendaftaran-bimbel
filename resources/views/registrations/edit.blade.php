@@ -77,6 +77,26 @@
                 </div>
 
                 <div class="form-group row">
+                    <label for="inputBranch" class="col-sm-3 col-form-label">Cabang</label>
+                    <div class="col-sm-9">
+                        <select name="branch_id" id="inputBranch"
+                            class="form-select @error('branch_id') is-invalid @enderror">
+                            <option value disabled selected>Pilih cabang</option>
+                            @foreach ($branches as $item)
+                                <option @selected((old('branch_id') ?? $registration->branch_id) == $item->id) value="{{ $item->id }}">{{ $item->nama }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        @error('branch_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <label for="inputDate" class="col-sm-3 col-form-label">Tanggal</label>
                     <div class="col-sm-9">
                         <input type="date" name="tanggal" value="{{ old('tanggal') ?? $registration->tanggal }}"

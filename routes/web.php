@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BranchController;
 use App\Http\Controllers\HomeController as AdminHomeController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PaymentController;
@@ -21,11 +22,17 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('programs', ProgramController::class);
 
+        Route::resource('branches', BranchController::class);
+
         Route::resource('admins', AdminController::class);
 
         Route::resource('students', StudentController::class);
 
         Route::resource('registrations', RegistrationController::class);
+        Route::get('registrations/report/create', [RegistrationController::class, 'createReport'])
+            ->name('registrations.create-report');
+        Route::post('registrations/report/generate', [RegistrationController::class, 'generateReport'])
+            ->name('registrations.generate-report');
 
         Route::resource('payments', PaymentController::class)->except(['index', 'create', 'edit']);
     });

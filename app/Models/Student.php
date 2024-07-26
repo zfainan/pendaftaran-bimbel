@@ -14,21 +14,22 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  *
  * @mixin \Illuminate\Database\Eloquent\Model
  *
- * @property      int                             $id
- * @property      string                          $nama
- * @property      string|null                     $tempat_lahir
- * @property      string|null                     $tgl_lahir
- * @property      string|null                     $gender
- * @property      int|null                        $kelas
- * @property      string|null                     $asal_sekolah
- * @property      string|null                     $no_telp
- * @property      string|null                     $nama_ortu
- * @property      string|null                     $pekerjaan_ortu
- * @property      string|null                     $no_telp_ortu
- * @property      \Illuminate\Support\Carbon|null $created_at
- * @property      \Illuminate\Support\Carbon|null $updated_at
- * @property      bool                            $is_active
- * @property-read \App\Models\User|null           $user
+ * @property      int                                                                 $id
+ * @property      string                                                              $nama
+ * @property      string|null                                                         $tempat_lahir
+ * @property      string|null                                                         $tgl_lahir
+ * @property      string|null                                                         $gender
+ * @property      int|null                                                            $kelas
+ * @property      string|null                                                         $asal_sekolah
+ * @property      string|null                                                         $no_telp
+ * @property      string|null                                                         $nama_ortu
+ * @property      string|null                                                         $pekerjaan_ortu
+ * @property      string|null                                                         $no_telp_ortu
+ * @property      \Illuminate\Support\Carbon|null                                     $created_at
+ * @property      \Illuminate\Support\Carbon|null                                     $updated_at
+ * @property      bool                                                                $is_active
+ * @property-read \App\Models\User|null                                               $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Registration[] $registrations
  */
 class Student extends Model
 {
