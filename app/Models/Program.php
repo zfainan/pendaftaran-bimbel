@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property int|null                        $harga
+ * @property string|null                     $description
  */
 class Program extends Model
 {
@@ -27,5 +28,5 @@ class Program extends Model
      *
      * @var array
      */
-    protected $fillable = ['nama', 'harga'];
+    protected $fillable = ['nama', 'harga', 'description'];
 }

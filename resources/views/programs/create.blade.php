@@ -52,10 +52,26 @@
                     <div class="col-sm-9">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">Rp</span>
-                            <input type="number" name="harga" value="{{ old('harga') }}" class="form-control @error('harga') is-invalid @enderror" placeholder="Harga"
+                            <input type="number" name="harga" value="{{ old('harga') }}"
+                                class="form-control @error('harga') is-invalid @enderror" placeholder="Harga"
                                 aria-describedby="basic-addon1" required>
 
                             @error('harga')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="description" class="col-sm-3 col-form-label">Deskripsi/keterangan Program</label>
+                    <div class="col-sm-9">
+                        <div class="input-group mb-3">
+                            <textarea name="description" rows="4" class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
+
+                            @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

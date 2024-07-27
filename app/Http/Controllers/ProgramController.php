@@ -35,6 +35,7 @@ class ProgramController extends Controller
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'harga' => 'required|integer|min:0',
+            'description' => 'required|string',
         ]);
 
         Program::create($validated);
@@ -66,6 +67,7 @@ class ProgramController extends Controller
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'harga' => 'required|integer|min:0',
+            'description' => 'required|string',
         ]);
 
         $program->update($validated);

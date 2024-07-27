@@ -67,6 +67,21 @@
                 </div>
 
                 <div class="form-group row">
+                    <label for="description" class="col-sm-3 col-form-label">Deskripsi/keterangan Program</label>
+                    <div class="col-sm-9">
+                        <div class="input-group mb-3">
+                            <textarea name="description" rows="4" class="form-control @error('description') is-invalid @enderror">{{ old('description') ?? $program->description }}</textarea>
+
+                            @error('description')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <div class="col-sm-9 ms-auto">
                         <button type="submit" class="btn btn-gradient-primary mr-2">Simpan</button>
                         <a href="{{ route('programs.index') }}" class="btn btn-light">Kembali</a>

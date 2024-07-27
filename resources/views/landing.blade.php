@@ -150,6 +150,7 @@
                                 <div class="pricing-item featured">
                                     <h3>{{ $program->nama }}</h3>
                                     <h4><sup>Rp</sup>{{ $program->harga }}<span> / Semester</span></h4>
+                                    <p>{{ $program->description }}</p>
                                     <ul>
                                         <li><i class="bi bi-check"></i> <span>Pengajar Ahli</span></li>
                                         <li><i class="bi bi-check"></i> <span>Pendampingan</span></li>
