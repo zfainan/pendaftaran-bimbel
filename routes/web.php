@@ -45,6 +45,9 @@ Route::middleware('auth')->group(function () {
 
         Route::post('/complete-registration', [HomeController::class, 'completeRegistration'])
             ->name('student.store-registration');
+
+        Route::post('/recreate-payment-link', [HomeController::class, 'recreatePaymentLink'])
+            ->name('student.recreate-payment-link');
     });
 });
 

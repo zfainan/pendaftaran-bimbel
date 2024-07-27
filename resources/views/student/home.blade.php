@@ -17,9 +17,23 @@
                             @endif
                         </p>
 
-                        @if (!$payment)
+                        @if (!$payment || !$payment->is_paid)
                             <p>Anda belum membayar biaya pendaftaran, segera lakukan pembayaran untuk dapat mengikuti kelas.
                             </p>
+
+                            @if ($payment && !$payment->is_paid && now()->lessThanOrEqualTo($payment->valid_until))
+                                <p>Link pembayaran: <a href="{{ $payment->payment_url }}" target="_blank"
+                                        rel="noopener noreferrer">{{ $payment->payment_url }}</a></p>
+                            @endif
+                        @endif
+
+                        @if ($payment && !now()->lessThanOrEqualTo($payment->valid_until))
+                            <form action="{{ route('student.recreate-payment-link') }}" method="POST">
+                                @csrf
+                                <button class="btn btn-primary">
+                                    Buat Link Pembayaran Baru
+                                </button>
+                            </form>
                         @endif
 
                     </div>

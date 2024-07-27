@@ -36,10 +36,10 @@
             <nav aria-label="main_nav"
                 class="navbar default-layout-navbar col-lg-12 col-12 fixed-top d-flex flex-row p-0">
                 <div class="navbar-brand-wrapper d-flex align-items-center justify-content-start text-center">
-                    <a class="navbar-brand brand-logo" href="/"><img src="/assets/images/logo.svg"
-                            alt="logo" /></a>
-                    <a class="navbar-brand brand-logo-mini" href="/"><img src="/assets/images/logo-mini.svg"
-                            alt="logo" /></a>
+                    <a class="navbar-brand brand-logo" href="/">
+                        <span class="fs-3 fw-bold text-primary">Smartgama</span></a>
+                    <a class="navbar-brand brand-logo-mini" href="/">
+                        <span class="fs-6 fw-bold text-primary">Smartgama</span></a>
                 </div>
                 <div class="navbar-menu-wrapper d-flex align-items-stretch">
                     <button class="navbar-toggler navbar-toggler align-self-center" type="button"
@@ -134,6 +134,24 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ route('branches.index') }}">Cabang</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="collapse" href="#side-laporan"
+                                    aria-expanded="false" aria-controls="side-laporan">
+                                    <span class="menu-title">Laporan</span>
+                                    <i class="menu-arrow"></i>
+                                    <i class="mdi mdi-file-document menu-icon"></i>
+                                </a>
+                                <div class="collapse" id="side-laporan">
+                                    <ul class="nav flex-column sub-menu">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('registrations.create-report') }}">Pendaftaran</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Pembayaran</a>
                                         </li>
                                     </ul>
                                 </div>

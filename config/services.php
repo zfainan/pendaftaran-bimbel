@@ -35,4 +35,12 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+
+    'midtrans' => [
+        'host' => env('MIDTRANS_HOST'),
+        'merchant_id' => env('MIDTRANS_MERCHANT_ID'),
+        'server_key' => env('MIDTRANS_SERVER_KEY'),
+        'client_key' => env('MIDTRANS_CLIENT_KEY'),
+        'webhook_url' => env('MIDTRANS_WEBHOOK_URL'),
+    ],
 ];

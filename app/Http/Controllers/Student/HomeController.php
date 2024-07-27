@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\CreatePaymentLink;
+use App\Models\Registration;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -37,7 +39,46 @@ class HomeController extends Controller
             'no_telp_ortu' => 'required|string|max:20',
         ]);
 
-        auth()->user()->userable->update($validated);
+        /** @var Student $student */
+        $student = auth()->user()->userable;
+        $student->update($validated);
+
+        if (count($student->registrations)) {
+            /** @var Registration $registration */
+            $registration = $student->registrations()->latest()->first();
+
+            $payment = CreatePaymentLink::dispatchSync($registration);
+
+            if ($payment?->id) {
+                return redirect($payment->payment_url);
+            }
+        }
+
+        return redirect()->route('student.home');
+    }
+
+    public function recreatePaymentLink()
+    {
+        /** @var Student $user */
+        $user = auth()->user()->userable;
+
+        $user->load('registrations');
+
+        $registration = $user?->registrations()->orderByDesc('created_at')->first();
+        $payment = $registration?->payment;
+
+        if (
+            $registration &&
+            'settlement' != $payment->status &&
+            ! now()->lessThanOrEqualTo($payment->valid_until)
+        ) {
+            info('recreating payment');
+            $newPayment = CreatePaymentLink::dispatchSync($registration);
+
+            if ($newPayment?->id) {
+                $payment?->delete();
+            }
+        }
 
         return redirect()->route('student.home');
     }
