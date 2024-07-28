@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('student')->middleware('student-only')->group(function () {
         Route::get('/home', [HomeController::class, 'index'])->name('student.home');
 
-        Route::view('/complete-registration', 'student.complete-registration')
+        Route::get('/complete-registration', [HomeController::class, 'registrationForm'])
             ->name('student.complete-registration');
 
         Route::post('/complete-registration', [HomeController::class, 'completeRegistration'])

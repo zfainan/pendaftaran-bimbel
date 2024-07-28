@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\CreatePaymentLink;
+use App\Models\Branch;
 use App\Models\Registration;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -25,6 +26,13 @@ class HomeController extends Controller
         return view('student.home', compact('program', 'payment'));
     }
 
+    public function registrationForm()
+    {
+        $branches = Branch::all();
+
+        return view('student.complete-registration', compact('branches'));
+    }
+
     public function completeRegistration(Request $request)
     {
         $validated = $request->validate([
@@ -37,6 +45,7 @@ class HomeController extends Controller
             'nama_ortu' => 'required|string|max:255',
             'pekerjaan_ortu' => 'required|string|max:255',
             'no_telp_ortu' => 'required|string|max:20',
+            'branch_id' => 'nullable|exists:branches,id',
         ]);
 
         /** @var Student $student */
@@ -46,6 +55,9 @@ class HomeController extends Controller
         if (count($student->registrations)) {
             /** @var Registration $registration */
             $registration = $student->registrations()->latest()->first();
+            $registration->update([
+                'branch_id' => $request->get('branch_id'),
+            ]);
 
             $payment = CreatePaymentLink::dispatchSync($registration);
 

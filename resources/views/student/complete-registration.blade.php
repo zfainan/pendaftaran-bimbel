@@ -40,6 +40,31 @@
                     <form class="pt-3" action="{{ route('student.store-registration') }}" method="POST">
                         @csrf
 
+                        @if (count(auth()->user()->userable->registrations))
+                            <div class="form-group row">
+                                <label for="inputBranch" class="col-sm-3 col-form-label">Cabang Bimbel</label>
+                                <div class="col-sm-9">
+                                    <select name="branch_id" id="inputBranch"
+                                        class="form-select @error('branch_id') is-invalid @enderror">
+                                        <option value disabled selected>Pilih cabang</option>
+                                        @foreach ($branches as $item)
+                                            <option @selected(old('branch_id') == $item->id) value="{{ $item->id }}">
+                                                {{ $item->nama }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('branch_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        @endif
+
+                        <p><strong>Data Diri</strong></p>
+
                         <div class="form-group row">
                             <label for="inputTempatLahir" class="col-sm-3 col-form-label">Tempat Lahir</label>
                             <div class="col-sm-9">
