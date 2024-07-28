@@ -7,6 +7,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
@@ -30,6 +31,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property      bool                                                                $is_active
  * @property-read \App\Models\User|null                                               $user
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Registration[] $registrations
+ * @property-read \App\Models\Registration|null                                       $registration
  */
 class Student extends Model
 {
@@ -61,5 +63,10 @@ class Student extends Model
     public function registrations(): HasMany
     {
         return $this->hasMany(Registration::class);
+    }
+
+    public function registration(): HasOne
+    {
+        return $this->hasOne(Registration::class);
     }
 }

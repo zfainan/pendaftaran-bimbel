@@ -45,6 +45,12 @@ Route::middleware('auth')->group(function () {
                 ->name('reports.payments.create');
             Route::post('payment-data', [ReportController::class, 'generatePaymentsReport'])
                 ->name('reports.payments.generate');
+
+            // student
+            Route::get('student-data', [ReportController::class, 'createStudentsReport'])
+                ->name('reports.students.create');
+            Route::post('student-data', [ReportController::class, 'generateStudentsReport'])
+                ->name('reports.students.generate');
         });
     });
 

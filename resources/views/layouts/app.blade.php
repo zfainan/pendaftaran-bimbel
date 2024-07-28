@@ -153,6 +153,9 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ route('reports.payments.create') }}">Pembayaran</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('reports.students.create') }}">Siswa</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </li>
