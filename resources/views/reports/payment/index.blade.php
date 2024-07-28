@@ -6,11 +6,11 @@
 
 @section('page-header')
     <div class="page-header">
-        <h3 class="page-title"> Generate Laporan Pendaftaran </h3>
+        <h3 class="page-title"> Generate Laporan Pembayaran </h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('registrations.index') }}">Data Pendaftaran</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Generate Laporan Pendaftaran</li>
+                <li class="breadcrumb-item">Laporan</li>
+                <li class="breadcrumb-item active" aria-current="page">Generate Laporan Pembayaran</li>
             </ol>
         </nav>
     </div>
@@ -34,7 +34,7 @@
     <div class="card">
         <div class="card-body">
             <form class="forms-sample" data-bitwarden-watching="1" method="POST"
-                action="{{ route('registrations.generate-report') }}">
+                action="{{ route('reports.payments.generate') }}">
                 @csrf
 
                 <div class="form-group row">
@@ -108,7 +108,6 @@
                 <div class="form-group row">
                     <div class="col-sm-9 ms-auto">
                         <button type="submit" class="btn btn-gradient-primary mr-2">Cetak</button>
-                        <a href="{{ route('registrations.index') }}" class="btn btn-light">Kembali</a>
                     </div>
                 </div>
             </form>

@@ -9,6 +9,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\Student\HomeController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Auth;
@@ -29,12 +30,22 @@ Route::middleware('auth')->group(function () {
         Route::resource('students', StudentController::class);
 
         Route::resource('registrations', RegistrationController::class);
-        Route::get('registrations/report/create', [RegistrationController::class, 'createReport'])
-            ->name('registrations.create-report');
-        Route::post('registrations/report/generate', [RegistrationController::class, 'generateReport'])
-            ->name('registrations.generate-report');
 
         Route::resource('payments', PaymentController::class)->except(['index', 'create', 'edit']);
+
+        Route::prefix('reports')->group(function () {
+            // registrations
+            Route::get('registration-data', [ReportController::class, 'createRegistrationsReport'])
+                ->name('reports.registrations.create');
+            Route::post('registration-data', [ReportController::class, 'generateRegistrationsReport'])
+                ->name('reports.registrations.generate');
+
+            // payments
+            Route::get('payment-data', [ReportController::class, 'createPaymentsReport'])
+                ->name('reports.payments.create');
+            Route::post('payment-data', [ReportController::class, 'generatePaymentsReport'])
+                ->name('reports.payments.generate');
+        });
     });
 
     Route::prefix('student')->middleware('student-only')->group(function () {

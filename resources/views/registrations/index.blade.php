@@ -53,8 +53,7 @@
                     </div> --}}
                 </form>
 
-                <a href="{{ route('registrations.create-report') }}" class="btn btn-outline-primary my-auto ms-auto">Cetak Laporan</a>
-                <a href="{{ route('registrations.create') }}" class="btn btn-primary my-auto ms-2">Tambah Data</a>
+                <a href="{{ route('registrations.create') }}" class="btn btn-primary my-auto ms-auto">Tambah Data</a>
             </div>
 
             <div class="table-responsive">

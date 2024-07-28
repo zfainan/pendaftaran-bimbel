@@ -148,10 +148,10 @@
                                 <div class="collapse" id="side-laporan">
                                     <ul class="nav flex-column sub-menu">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('registrations.create-report') }}">Pendaftaran</a>
+                                            <a class="nav-link" href="{{ route('reports.registrations.create') }}">Pendaftaran</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Pembayaran</a>
+                                            <a class="nav-link" href="{{ route('reports.payments.create') }}">Pembayaran</a>
                                         </li>
                                     </ul>
                                 </div>
