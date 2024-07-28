@@ -81,8 +81,7 @@ class HomeController extends Controller
 
         if (
             $registration &&
-            'settlement' != $payment->status &&
-            ! now()->lessThanOrEqualTo($payment->valid_until)
+            (!$payment?->id || ('settlement' != $payment->status && ! now()->lessThanOrEqualTo($payment->valid_until)))
         ) {
             info('recreating payment');
             $newPayment = CreatePaymentLink::dispatchSync($registration);
